@@ -1,0 +1,10 @@
+name: Relique
+version: '0.1'
+main: com.github.darksoulq.relique.Relique
+api-version: '1.21'
+
+dependencies:
+  server:
+    AbyssalLib:
+      required: true
+      load: BEFORE
