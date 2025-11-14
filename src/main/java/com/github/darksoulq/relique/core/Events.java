@@ -5,6 +5,7 @@ import com.github.darksoulq.relique.Relique;
 import com.github.darksoulq.relique.api.Relic;
 import com.github.darksoulq.relique.data.PlayerData;
 import com.github.darksoulq.relique.api.RelicItem;
+import com.github.darksoulq.relique.data.Resources;
 import com.github.darksoulq.relique.data.Slots;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -34,5 +35,7 @@ public class Events {
                 }
             }.runTaskTimer(Relique.INSTANCE, 1L, 1L);
         }
+
+        Resources.register();
     }
 }

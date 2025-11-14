@@ -19,6 +19,8 @@ public class Items {
 
     public static final Holder<Item> NEXT = create("next", false);
     public static final Holder<Item> PREV = create("prev", false);
+    public static final Holder<Item> UP = create("up", false);
+    public static final Holder<Item> DOWN = create("down", false);
 
     private static Holder<Item> create(String name, boolean hideTooltip) {
         return ITEMS.register(name, id -> {

@@ -8,10 +8,13 @@ import com.github.darksoulq.relique.Relique;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.IntStream;
 
 /**
@@ -26,6 +29,8 @@ public class PlayerData {
     private static final File DATA_FOLDER = new File(Relique.INSTANCE.getDataFolder().getParentFile().getParent(), "config/relique/data");
     /** Cached player data instances to avoid unnecessary reloads. */
     private static final Map<UUID, PlayerData> CACHE = new HashMap<>();
+    private static final Pattern RELIC_PERMISSION_PATTERN =
+            Pattern.compile("^relique\\.([a-zA-Z0-9_]+)\\.(\\d+)$");
 
     private final Player player;
     private final Map<String, List<ItemStack>> slots = new HashMap<>();
@@ -73,9 +78,10 @@ public class PlayerData {
         }
 
         for (Slots.Slot slot : Slots.all()) {
+            int permitted = getPermittedAmount(player, slot);
             List<ItemStack> list = data.slots.computeIfAbsent(slot.getName(), k -> new ArrayList<>());
-            while (list.size() < slot.getAmount()) list.add(slot.getDisplay().clone());
-            if (list.size() > slot.getAmount()) list.subList(slot.getAmount(), list.size()).clear();
+            while (list.size() < permitted) list.add(slot.getDisplay().clone());
+            if (list.size() > permitted) list.subList(permitted, list.size()).clear();
         }
 
         return data;
@@ -188,4 +194,23 @@ public class PlayerData {
     public Map<String, List<ItemStack>> all() {
         return Collections.unmodifiableMap(slots);
     }
+
+    public static int getPermittedAmount(Player player, Slots.Slot slot) {
+        int result = slot.getAmount();
+
+        for (PermissionAttachmentInfo info : player.getEffectivePermissions()) {
+            if (!info.getValue()) continue;
+
+            Matcher m = RELIC_PERMISSION_PATTERN.matcher(info.getPermission());
+            if (!m.matches()) continue;
+
+            if (!m.group(1).equalsIgnoreCase(slot.getName())) continue;
+
+            int amount = Integer.parseInt(m.group(2));
+            if (amount > result) result = amount;
+        }
+
+        return result;
+    }
+
 }

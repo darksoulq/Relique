@@ -1,9 +1,6 @@
 package com.github.darksoulq.relique.core;
 
 import com.github.darksoulq.abyssallib.server.command.Command;
-import com.github.darksoulq.relique.Relique;
-import com.github.darksoulq.relique.api.Relic;
-import com.github.darksoulq.relique.api.RelicItem;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;

@@ -1,5 +1,8 @@
 # A Curios-Like Plugin for PaperMC
 
+> [!IMPORTANT]
+> This plugin Depends on [AbyssalLib](https://github.com/darksoulq/AbyssalLib)
+
 Relique adds a trinket system similar to ones added by Curios (and its fabric parallel Trinkets) allowing plugin devs to make equipable relics.
 
 # Server Owners
@@ -32,6 +35,10 @@ for changing the number of slots simply change the "amount" value.
 as for display item, change the display: parameter (do not mess with the : 1, thats the amount of item and is meant to be 1)
 
 > "display" can be changed to something like 'minecraft:hoe' or 'nexo:namespace:itemid' or as in the above config, to 'abyssallib:namespace:itemid', this supports any item that the AbyssalLib item bridge supports.
+
+### Per Player Slots
+You can assign a different number of slots to each player using permission, The permission format is:
+`relique.<slot_name>.<number>`
 
 # Developers
 For developers the API is pretty easy to use.
@@ -74,7 +81,7 @@ public class TestRelic extends Relic {
     }
 
     @Override
-    public void onTIck(Player wearer, ItemStack item) {
+    public void onTick(Player wearer, ItemStack item) {
         wearer.sendMessage("Tick!");
     }
 }

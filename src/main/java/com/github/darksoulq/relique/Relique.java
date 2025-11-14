@@ -6,6 +6,7 @@ import com.github.darksoulq.abyssallib.server.event.EventBus;
 import com.github.darksoulq.relique.core.Events;
 import com.github.darksoulq.relique.core.Items;
 import com.github.darksoulq.relique.core.ReliqueCommands;
+import com.github.darksoulq.relique.data.Resources;
 import com.github.darksoulq.relique.data.Slots;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -30,6 +31,8 @@ public final class Relique extends JavaPlugin {
         Slots.load();
         registerDefaults();
         CommandBus.register(PLUGIN_ID, new ReliqueCommands());
+
+        Resources.setup();
     }
 
     @Override
