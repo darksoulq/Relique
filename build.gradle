@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     paperweight.paperDevBundle('1.21.9-R0.1-SNAPSHOT')
-    compileOnly("com.github.darksoulq:AbyssalLib:v1.6.0-mc1.21.9")
+    implementation("com.github.darksoulq:AbyssalLib:v1.7.2-mc1.21.9")
 }
 
 tasks {
