@@ -1,11 +1,11 @@
 plugins {
     id 'java'
-    id("xyz.jpenilla.run-paper") version "2.3.1"
-    id 'io.papermc.paperweight.userdev' version '2.0.0-beta.17'
+    id("xyz.jpenilla.run-paper") version "3.0.2"
+    id 'io.papermc.paperweight.userdev' version '2.0.0-beta.21'
 }
 
 group = 'com.github.darksoulq'
-version = '1.0.0'
+version = '1.0.0-mc.26.1.2'
 
 repositories {
     mavenCentral()
@@ -16,20 +16,27 @@ repositories {
     maven {
         url = uri("https://jitpack.io/")
     }
+    maven {
+        name = "faststatsReleases"
+        url = uri("https://repo.faststats.dev/releases")
+    }
 }
 
 dependencies {
-    paperweight.paperDevBundle('1.21.9-R0.1-SNAPSHOT')
-    implementation("com.github.darksoulq:AbyssalLib:v1.7.2-mc1.21.9")
+    paperweight.paperDevBundle('26.1.2.build.12-alpha')
+    implementation("com.github.darksoulq:AbyssalLib:v2.0.5-mc.26.1.2")
+    compileOnly('com.fasterxml.jackson.core:jackson-databind:2.17.0')
+    compileOnly('com.fasterxml.jackson.core:jackson-core:2.17.0')
+    implementation("dev.faststats.metrics:bukkit:0.22.0")
 }
 
 tasks {
     runServer {
-        minecraftVersion("1.21.9")
+        minecraftVersion("26.1.2")
     }
 }
 
-def targetJavaVersion = 21
+def targetJavaVersion = 25
 java {
     def javaVersion = JavaVersion.toVersion(targetJavaVersion)
     if (JavaVersion.current() < javaVersion) {

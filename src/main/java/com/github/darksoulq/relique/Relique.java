@@ -1,50 +1,43 @@
 package com.github.darksoulq.relique;
 
-import com.github.darksoulq.abyssallib.common.util.Identifier;
 import com.github.darksoulq.abyssallib.server.command.CommandBus;
 import com.github.darksoulq.abyssallib.server.event.EventBus;
-import com.github.darksoulq.relique.core.Events;
-import com.github.darksoulq.relique.core.Items;
-import com.github.darksoulq.relique.core.ReliqueCommands;
+import com.github.darksoulq.relique.core.*;
+import com.github.darksoulq.relique.data.PluginConfig;
 import com.github.darksoulq.relique.data.Resources;
-import com.github.darksoulq.relique.data.Slots;
+import dev.faststats.bukkit.BukkitMetrics;
+import dev.faststats.core.Metrics;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Relique extends JavaPlugin {
-    public static String PLUGIN_ID = "relique";
+    public static final String PLUGIN_ID = "relique";
     public static Relique INSTANCE;
-
-    public static Slots.Slot HEAD;
-    public static Slots.Slot CHEST;
-    public static Slots.Slot BELT;
-    public static Slots.Slot RING;
-    public static Slots.Slot CHARM;
+    public static PluginConfig CONFIG;
+    private final Metrics metrics = BukkitMetrics.factory()
+        .token("af06c9aec3be1e546f1f096c99f4de0d")
+        .create(this);
 
     @Override
     public void onEnable() {
         INSTANCE = this;
+        CONFIG = new PluginConfig();
+
+        PluginPermissions.NAMESPACE.apply();
+        RelicComponents.COMPONENTS.apply();
+        RelicTags.TAGS.apply();
         Items.ITEMS.apply();
+        RelicValidators.VALIDATORS.apply();
+        RelicPlaceholders.PLACEHOLDERS.apply();
+        CommandBus.register(PLUGIN_ID, new InternalCommands());
 
-        EventBus bus = new EventBus(this);
-        bus.register(new Events());
+        RelicLoader.clear();
+        RelicLoader.loadResource(this);
+        RelicLoader.load();
 
-        Slots.load();
-        registerDefaults();
-        CommandBus.register(PLUGIN_ID, new ReliqueCommands());
+        Bukkit.getScheduler().runTaskLater(this, Resources::setupAndRegister, 15L);
 
-        Resources.setup();
-    }
-
-    @Override
-    public void onDisable() {
-        Slots.save();
-    }
-
-    private void registerDefaults() {
-        HEAD = Slots.register("head", 1, Items.HEAD.get().getStack());
-        CHEST = Slots.register("chest", 1, Items.CHEST.get().getStack());
-        BELT = Slots.register("belt", 1, Items.BELT.get().getStack());
-        RING = Slots.register("ring", 2, Items.RING.get().getStack());
-        CHARM = Slots.register("charm", 2, Items.CHARM.get().getStack());
+        if (CONFIG.metrics.get()) metrics.ready();
+        new EventBus(this).register(new Events());
     }
 }

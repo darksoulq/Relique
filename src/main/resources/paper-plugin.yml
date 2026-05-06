@@ -1,5 +1,5 @@
 name: Relique
-version: '1.0.0'
+version: '1.0.0-mc.26.1.2'
 main: com.github.darksoulq.relique.Relique
 api-version: '1.21'
 

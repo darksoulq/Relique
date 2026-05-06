@@ -1,0 +1,6 @@
+{
+  "order": 2,
+  "icon": "relique:chest",
+  "size": 1,
+  "drop_rule": "DEFAULT"
+}
