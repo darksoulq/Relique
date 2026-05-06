@@ -74,7 +74,7 @@ public class PlayerInventoryElement implements GuiElement {
                     }
                 }
             }
-            return ActionResult.PASS;
+            return ActionResult.CANCEL;
         }
         return ActionResult.PASS;
     }
