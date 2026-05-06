@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rules SYSTEM "https://resources.jetbrains.com/writerside/1.0/redirection-rules.dtd">
+<rules>
+    <!-- format is as follows
+    <rule id="<unique id>">
+        <accepts>page.html</accepts>
+    </rule>
+    -->
+    <rule id="4d64b606">
+        <description><![CDATA[Created after removal of "<starter-topic.md>" from Relique]]></description>
+        <accepts>starter-topic.html</accepts>
+    </rule>
+    <rule id="6d5e805b">
+        <description>Created after removal of "Creating/Modifying A Slot" from Relique</description>
+        <accepts>creating-a-slot.html</accepts>
+    </rule>
+    <rule id="2c6c45a9">
+        <description>Created after removal of "Slot Types" from Relique</description>
+        <accepts>Slot-Types.html</accepts>
+    </rule>
+</rules>

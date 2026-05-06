@@ -1,0 +1,53 @@
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html lang="en-US" data-preset="contrast" data-primary-color="#307FFF"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="UTF-8"><meta name="robots" content="noindex"><meta name="built-on" content="2026-05-06T21:39:21.1904706"><title>Equippable Items | Relique</title><script type="application/json" id="virtual-toc-data">[{"id":"for-server-owners-creating-tag-files","level":0,"title":"For Server Owners: Creating Tag Files","anchor":"#for-server-owners-creating-tag-files"},{"id":"for-developers-bundling-tags","level":0,"title":"For Developers: Bundling Tags","anchor":"#for-developers-bundling-tags"}]</script><script type="application/json" id="topic-shortcuts"></script><link href="https://resources.jetbrains.com/writerside/apidoc/6.26.0-b913/app.css" rel="stylesheet"><meta name="msapplication-TileColor" content="#000000"><link rel="apple-touch-icon" sizes="180x180" href="https://jetbrains.com/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="https://jetbrains.com/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="https://jetbrains.com/favicon-16x16.png"><meta name="msapplication-TileImage" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-144x144.png"><meta name="msapplication-square70x70logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-70x70.png"><meta name="msapplication-square150x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-150x150.png"><meta name="msapplication-wide310x150logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x150.png"><meta name="msapplication-square310x310logo" content="https://resources.jetbrains.com/storage/ui/favicons/mstile-310x310.png"><meta name="image" content=""><!-- Open Graph --><meta property="og:title" content="Equippable Items | Relique"><meta property="og:description" content=""><meta property="og:image" content=""><meta property="og:site_name" content="Relique Help"><meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:url" content="writerside-documentation/equippable-items.html"><!-- End Open Graph --><!-- Twitter Card --><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content=""><meta name="twitter:title" content="Equippable Items | Relique"><meta name="twitter:description" content=""><meta name="twitter:creator" content=""><meta name="twitter:image:src" content=""><!-- End Twitter Card --><!-- Schema.org WebPage --><script type="application/ld+json">{
+    "@context": "http://schema.org",
+    "@type": "WebPage",
+    "@id": "writerside-documentation/equippable-items.html#webpage",
+    "url": "writerside-documentation/equippable-items.html",
+    "name": "Equippable Items | Relique",
+    "description": "",
+    "image": "",
+    "inLanguage":"en-US"
+}</script><!-- End Schema.org --><!-- Schema.org WebSite --><script type="application/ld+json">{
+    "@type": "WebSite",
+    "@id": "writerside-documentation/#website",
+    "url": "writerside-documentation/",
+    "name": "Relique Help"
+}</script><!-- End Schema.org --></head><body data-id="equippable-items" data-main-title="Equippable Items" data-article-props="{&quot;seeAlsoStyle&quot;:&quot;links&quot;}" data-template="article" data-breadcrumbs="Basics"><div class="wrapper"><main class="panel _main"><header class="panel__header"><div class="container"><h3>Relique  Help</h3><div class="panel-trigger"></div></div></header><section class="panel__content"><div class="container"><article class="article" data-shortcut-switcher="inactive"><h1 data-toc="equippable-items" id="equippable-items.md">Equippable Items</h1><p id="-8f98n2_4">By default, every relic slot uses the <code class="code" id="-8f98n2_8">relique:tag</code> validator. This validator restricts the slot so that only items belonging to a specific AbyssalLib <code class="code" id="-8f98n2_9">ItemTag</code> can be equipped. The required tag ID always exactly matches the slot's ID (e.g., the <code class="code" id="-8f98n2_10">relique:ring</code> slot requires the item to be in the <code class="code" id="-8f98n2_11">relique:ring</code> tag).</p><p id="-8f98n2_5">You define these tags using JSON or YAML files, utilizing <code class="code" id="-8f98n2_12">ItemPredicate</code> rules to match specific materials, NBT components, or nested conditions.</p><section class="chapter"><h2 id="for-server-owners-creating-tag-files" data-toc="for-server-owners-creating-tag-files">For Server Owners: Creating Tag Files</h2><p id="-8f98n2_13">Tag files are loaded by AbyssalLib, not Relique. To allow items into a slot, create a JSON file in the following directory: <code class="code" id="-8f98n2_18">plugins/AbyssalLib/tags/item/&lt;filename&gt;.json</code></p><p id="-8f98n2_14">The name of the file does not matter, but the <code class="code" id="-8f98n2_19">id</code> declared <span class="emphasis" id="-8f98n2_20">inside</span> the file must match the slot ID you are targeting.</p><section class="chapter"><h3 id="json-format-example" data-toc="json-format-example">JSON Format Example</h3><p id="-8f98n2_21">This example configures the <code class="code" id="-8f98n2_23">relique:ring</code> tag. It allows any Diamond, or any Gold Nugget that has a custom name.</p><div class="code-block" data-lang="json">
+{
+  &quot;type&quot;: &quot;abyssallib:item&quot;,
+  &quot;id&quot;: &quot;relique:ring&quot;,
+  &quot;values&quot;: [
+    {
+      &quot;id&quot;: &quot;minecraft:diamond&quot;
+    },
+    {
+      &quot;id&quot;: &quot;minecraft:gold_nugget&quot;,
+      &quot;with&quot;: [
+        &quot;minecraft:custom_name&quot;
+      ]
+    }
+  ]
+}
+</div></section><section class="chapter"><h3 id="predicate-fields" data-toc="predicate-fields">Predicate Fields</h3><p id="-8f98n2_24">Each object inside the <code class="code" id="-8f98n2_26">values</code> array is an <code class="code" id="-8f98n2_27">ItemPredicate</code>. It supports the following optional fields to filter items:</p><div class="table-wrapper"><table class="wide" id="-8f98n2_25"><thead><tr class="ijRowHead" id="-8f98n2_28"><th id="-8f98n2_33"><p>Field</p></th><th id="-8f98n2_34"><p>Type</p></th><th id="-8f98n2_35"><p>Description</p></th></tr></thead><tbody><tr id="-8f98n2_29"><td id="-8f98n2_36"><p><code class="code" id="-8f98n2_39">id</code></p></td><td id="-8f98n2_37"><p>String</p></td><td id="-8f98n2_38"><p>The exact vanilla material key the item must match (e.g., <code class="code" id="-8f98n2_40">minecraft:iron_ingot</code>).</p></td></tr><tr id="-8f98n2_30"><td id="-8f98n2_41"><p><code class="code" id="-8f98n2_44">with</code></p></td><td id="-8f98n2_42"><p>List&lt;Condition&gt;</p></td><td id="-8f98n2_43"><p>A list of component keys that the item <b id="-8f98n2_45">must</b> have (e.g., <code class="code" id="-8f98n2_46">minecraft:custom_data</code>).</p></td></tr><tr id="-8f98n2_31"><td id="-8f98n2_47"><p><code class="code" id="-8f98n2_50">without</code></p></td><td id="-8f98n2_48"><p>List&lt;Condition&gt;</p></td><td id="-8f98n2_49"><p>A list of component keys that the item <b id="-8f98n2_51">must not</b> have.</p></td></tr><tr id="-8f98n2_32"><td id="-8f98n2_52"><p><code class="code" id="-8f98n2_55">components</code></p></td><td id="-8f98n2_53"><p>List&lt;Condition&gt;</p></td><td id="-8f98n2_54"><p>A list of exact component objects the item must match perfectly (e.g., matching a specific custom model data integer).</p></td></tr></tbody></table></div></section><section class="chapter"><h3 id="logical-conditions" data-toc="logical-conditions">Logical Conditions</h3><p id="-8f98n2_56">Lists like <code class="code" id="-8f98n2_60">with</code>, <code class="code" id="-8f98n2_61">without</code>, and <code class="code" id="-8f98n2_62">components</code> evaluate using a <code class="code" id="-8f98n2_63">Condition</code> system. By default, items in a list are evaluated as single requirements. However, you can use <code class="code" id="-8f98n2_64">any_of</code> (OR) and <code class="code" id="-8f98n2_65">all_of</code> (AND) blocks for complex logic.</p><div class="code-block" data-lang="json">
+{
+  &quot;id&quot;: &quot;minecraft:stick&quot;,
+  &quot;with&quot;: [
+    {
+      &quot;any_of&quot;: [
+        &quot;minecraft:enchantment_glint_override&quot;,
+        &quot;minecraft:custom_name&quot;
+      ]
+    }
+  ]
+}
+</div><p id="-8f98n2_58"><span class="emphasis" id="-8f98n2_66">The stick is allowed if it has EITHER an enchantment glint OR a custom name.</span></p></section></section><section class="chapter"><h2 id="for-developers-bundling-tags" data-toc="for-developers-bundling-tags">For Developers: Bundling Tags</h2><p id="-8f98n2_67">If you are developing a custom add-on and want to register equippable items natively, do not hardcode item checks. Instead, bundle tag files directly into your plugin's resources.</p><p id="-8f98n2_68">Place your JSON tag files in your project's resources folder: <code class="code" id="-8f98n2_72">src/main/resources/tags/item/&lt;your_tag_file&gt;.json</code></p><p id="-8f98n2_69">During your plugin's startup phase, instruct AbyssalLib's <code class="code" id="-8f98n2_73">TagLoader</code> to scan and load the file:</p><div class="code-block" data-lang="java">
+@Override
+public void onEnable() {
+    // Loads a specific tag file from the jar
+    TagLoader.loadResource(this, &quot;tags/item/my_addon_rings.json&quot;);
+    
+    // OR, loads an entire folder of tags
+    TagLoader.loadFolder(this, &quot;tags/item&quot;);
+}
+</div><p id="-8f98n2_71">Because AbyssalLib safely merges tag files that share the same <code class="code" id="-8f98n2_74">id</code>, your add-on can add items to the default <code class="code" id="-8f98n2_75">relique:ring</code> tag without overwriting the server owner's configurations or other plugins.</p></section><div class="last-modified">06 May 2026</div><div data-feedback-placeholder="true"></div><div class="navigation-links _bottom"><a href="components.html" class="navigation-links__prev">Attributes &amp; Equip Sounds</a><a href="relic-api.html" class="navigation-links__next">Using RelicAPI</a></div></article><div id="disqus_thread"></div></div></section></main></div><script src="https://resources.jetbrains.com/writerside/apidoc/6.26.0-b913/app.js"></script></body></html>

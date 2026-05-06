@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE topic
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/xhtml-entities.dtd">
+<topic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="https://resources.jetbrains.com/writerside/1.0/topic.v2.xsd"
+       title="Discover Relique" id="discover-relique">
+
+    <section-starting-page>
+        <title>AbyssalLib</title>
+        <description>
+            PaperMC library for Streamlining Item, Block and GUI creation.
+        </description>
+        <spotlight>
+            <card href="installation.md" summary="Setting up dependencies.">
+            </card>
+            <card href="slot-configuration.md" summary="Managing Slots.">
+            </card>
+        </spotlight>
+        <primary>
+            <title>Features</title>
+            <card href="entity-configuration.md" summary="Managing slots available to entities.">
+            </card>
+            <card href="components.md" summary="Setting attribute modifiers and equip sounds.">
+            </card>
+            <card href="equippable-items.md" summary="Making items equippable.">
+            </card>
+            <card href="relic-api.md" summary="Using RelicAPI">
+            </card>
+            <card href="events.md" summary="Available Events">
+            </card>
+            <card href="custom-validators.md" summary="Creating Custom Validators">
+            </card>
+        </primary>
+    </section-starting-page>
+</topic>

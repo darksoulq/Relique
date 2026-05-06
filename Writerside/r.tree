@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE instance-profile
+        SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
+
+<instance-profile id="r"
+                 name="Relique"
+                  start-page="installation.md">
+
+    <toc-element topic="discover-relique.topic"/>
+    <toc-element topic="installation.md"/>
+    <toc-element toc-title="Basics">
+        <toc-element topic="slot-configuration.md"/>
+        <toc-element topic="entity-configuration.md"/>
+        <toc-element topic="components.md"/>
+        <toc-element topic="equippable-items.md"/>
+    </toc-element>
+    <toc-element toc-title="API">
+        <toc-element topic="relic-api.md"/>
+        <toc-element topic="events.md"/>
+        <toc-element topic="custom-validators.md"/>
+    </toc-element>
+</instance-profile>
