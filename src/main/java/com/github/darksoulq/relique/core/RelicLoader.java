@@ -97,11 +97,7 @@ public class RelicLoader {
             try (Stream<Path> stream = Files.walk(entitiesDir)) {
                 stream.filter(Files::isRegularFile).filter(p -> p.toString().endsWith(".json")).forEach(path -> {
                     EntitySlotConfig config = Try.of(() -> EntitySlotConfig.CODEC.decode(JsonOps.INSTANCE, MAPPER.readTree(path.toFile()))).orElse(null);
-                    if (config != null) {
-                        for (String entityType : config.entities()) {
-                            ENTITY_CONFIGS.put(entityType, config);
-                        }
-                    }
+                    mergeEntityConfig(config);
                 });
             } catch (IOException ignored) {}
         }
@@ -142,9 +138,7 @@ public class RelicLoader {
                                     applySlotDef(id, namespace, node);
                                 } else if (folder.equals("entities") && name.endsWith(".json")) {
                                     EntitySlotConfig config = EntitySlotConfig.CODEC.decode(JsonOps.INSTANCE, MAPPER.readTree(in));
-                                    for (String entityType : config.entities()) {
-                                        ENTITY_CONFIGS.put(entityType, config);
-                                    }
+                                    mergeEntityConfig(config);
                                 } else if (folder.equals("icons") && name.endsWith(".png")) {
                                     LOADED_ICONS.put(namespace + ":" + id, in.readAllBytes());
                                 } else if (folder.equals("lang") && name.endsWith(".json")) {
@@ -159,6 +153,24 @@ public class RelicLoader {
         } catch (Exception ignored) {}
     }
 
+    private static void mergeEntityConfig(EntitySlotConfig config) {
+        if (config == null || config.entities() == null || config.slots() == null) return;
+        for (String entityType : config.entities()) {
+            EntitySlotConfig existing = ENTITY_CONFIGS.get(entityType);
+            if (existing == null) {
+                ENTITY_CONFIGS.put(entityType, new EntitySlotConfig(List.of(entityType), new ArrayList<>(config.slots())));
+            } else {
+                List<String> mergedSlots = new ArrayList<>(existing.slots());
+                for (String slot : config.slots()) {
+                    if (!mergedSlots.contains(slot)) {
+                        mergedSlots.add(slot);
+                    }
+                }
+                ENTITY_CONFIGS.put(entityType, new EntitySlotConfig(List.of(entityType), mergedSlots));
+            }
+        }
+    }
+
     private static void applySlotDef(String id, String namespace, JsonNode node) {
         RelicSlot existing = RelicManager.getSlot(id);
 
@@ -170,9 +182,9 @@ public class RelicLoader {
             dropRule = Try.of(() -> DropRule.valueOf(node.get("drop_rule").asText().toUpperCase())).orElse(dropRule);
         }
 
-        List<Key> validators = existing != null ? existing.validators() : List.of(Key.key("relique:tag"));
+        List<Key> validators = existing != null ? new ArrayList<>(existing.validators()) : new ArrayList<>(List.of(Key.key("relique:tag")));
         if (node.has("validators")) {
-            validators = new ArrayList<>();
+            validators.clear();
             for (JsonNode valNode : node.get("validators")) {
                 validators.add(Key.key(valNode.asText()));
             }
@@ -192,15 +204,17 @@ public class RelicLoader {
             if (op == SlotOperation.ADD) finalSize += sizeMod;
             else if (op == SlotOperation.REMOVE) finalSize -= sizeMod;
             else if (op == SlotOperation.SET) finalSize = sizeMod;
+
+            finalSize = Math.max(0, finalSize);
         }
 
         RelicSlot slot = new RelicSlot(order, icon, finalSize, dropRule, validators);
         RelicManager.registerSlot(id, slot);
         RelicTags.register(namespace, id);
 
-        String attrKey = namespace + ":" + id;
+        String attrKey = "relique:" + id;
         if (!Registries.ATTRIBUTES.contains(attrKey)) {
-            Registries.ATTRIBUTES.register(attrKey, new Attribute(Key.key(namespace, id), finalSize));
+            Registries.ATTRIBUTES.register(attrKey, new Attribute(Key.key("relique", id), finalSize));
         }
 
         if (icon != null && icon.contains(":") && !icon.startsWith("minecraft:")) {

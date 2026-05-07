@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github.darksoulq'
-version = '2.0.0-mc.26.1.2'
+version = '2.1.0-mc.26.1.2'
 
 repositories {
     mavenCentral()
@@ -24,7 +24,7 @@ repositories {
 
 dependencies {
     paperweight.paperDevBundle('26.1.2.build.12-alpha')
-    implementation("com.github.darksoulq:AbyssalLib:v2.0.5-mc.26.1.2")
+    implementation("com.github.darksoulq:AbyssalLib:v2.1.0-mc.26.1.2")
     compileOnly('com.fasterxml.jackson.core:jackson-databind:2.17.0')
     compileOnly('com.fasterxml.jackson.core:jackson-core:2.17.0')
     implementation("dev.faststats.metrics:bukkit:0.22.0")

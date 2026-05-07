@@ -2,6 +2,7 @@ package com.github.darksoulq.relique;
 
 import com.github.darksoulq.abyssallib.server.command.CommandBus;
 import com.github.darksoulq.abyssallib.server.event.EventBus;
+import com.github.darksoulq.abyssallib.server.translation.internal.ItemPacketModifier;
 import com.github.darksoulq.relique.core.*;
 import com.github.darksoulq.relique.data.PluginConfig;
 import com.github.darksoulq.relique.data.Resources;
@@ -30,6 +31,8 @@ public final class Relique extends JavaPlugin {
         RelicValidators.VALIDATORS.apply();
         RelicPlaceholders.PLACEHOLDERS.apply();
         CommandBus.register(PLUGIN_ID, new InternalCommands());
+
+        ItemPacketModifier.registerModifier(new RelicTooltipModifier());
 
         RelicLoader.clear();
         RelicLoader.loadResource(this);
