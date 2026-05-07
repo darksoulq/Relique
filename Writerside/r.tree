@@ -9,6 +9,7 @@
     <toc-element topic="discover-relique.topic"/>
     <toc-element topic="installation.md"/>
     <toc-element toc-title="Basics">
+        <toc-element topic="language-configuration.md"/>
         <toc-element topic="slot-configuration.md"/>
         <toc-element topic="entity-configuration.md"/>
         <toc-element topic="components.md"/>

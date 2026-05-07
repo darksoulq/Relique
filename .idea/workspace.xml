@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fe5133c-059d-4d4f-b2e7-69e95ec6c84c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Relique.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/Relique.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/c.list" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/cfg/buildprofiles.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/r.tree" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/redirection-rules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/components.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/custom-validators.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/discover-relique.topic" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/entity-configuration.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/equippable-items.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/events.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/installation.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/relic-api.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/topics/slot-configuration.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/v.list" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Writerside/writerside.cfg" afterDir="false" />
-    </list>
+    <list default="true" id="0fe5133c-059d-4d4f-b2e7-69e95ec6c84c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -35,15 +15,30 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view />
+      </state>
+    </system>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "darksoulq"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;darksoulq&quot;
   }
-}]]></component>
+}</component>
   <component name="GitToolBoxStore">
     <option name="recentBranches">
       <RecentBranches>
@@ -69,12 +64,12 @@
       </RecentBranches>
     </option>
   </component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/darksoulq/Relique.git",
-    "accountId": "c9c0c217-7c6b-4d40-81ab-2ccdcac4b190"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/darksoulq/Relique.git&quot;,
+    &quot;accountId&quot;: &quot;c9c0c217-7c6b-4d40-81ab-2ccdcac4b190&quot;
   }
-}]]></component>
+}</component>
   <component name="InstanceColorv3">
     <option name="map">
       <map>
@@ -108,9 +103,9 @@
       </map>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="3DLvBBwTaMIt1XZHiTRJVE30wF1" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -118,13 +113,20 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "Writerside.Web Archive (r).executor": "Run",
     "git-widget-placeholder": "docs",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "writerside.last.selected.productRelique": "r"
+  },
+  "keyToStringList": {
+    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": [
+      "D:/IJ-workspace/Relique/Writerside/topics/language-configuration.md"
+    ]
   }
 }]]></component>
   <component name="RunManager">
