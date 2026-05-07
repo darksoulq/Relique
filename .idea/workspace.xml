@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0fe5133c-059d-4d4f-b2e7-69e95ec6c84c" name="Changes" comment="" />
+    <list default="true" id="0fe5133c-059d-4d4f-b2e7-69e95ec6c84c" name="Changes" comment="All slots are now registered under relique regardless of folder namespace (fixes slot conflict), added clientside attribute and slot tooltips">
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/commands.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/permissions.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Writerside/topics/placeholders.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Writerside/r.tree" beforeDir="false" afterPath="$PROJECT_DIR$/Writerside/r.tree" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -122,11 +127,6 @@
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "writerside.last.selected.productRelique": "r"
-  },
-  "keyToStringList": {
-    "stardust.markdown.MarkdownSplitEditorSuppressor:keyList": [
-      "D:/IJ-workspace/Relique/Writerside/topics/language-configuration.md"
-    ]
   }
 }]]></component>
   <component name="RunManager">

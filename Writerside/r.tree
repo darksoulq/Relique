@@ -9,9 +9,9 @@
     <toc-element topic="discover-relique.topic"/>
     <toc-element topic="installation.md"/>
     <toc-element toc-title="Basics">
-        <toc-element topic="language-configuration.md"/>
         <toc-element topic="slot-configuration.md"/>
         <toc-element topic="entity-configuration.md"/>
+        <toc-element topic="language-configuration.md"/>
         <toc-element topic="components.md"/>
         <toc-element topic="equippable-items.md"/>
     </toc-element>
@@ -19,5 +19,10 @@
         <toc-element topic="relic-api.md"/>
         <toc-element topic="events.md"/>
         <toc-element topic="custom-validators.md"/>
+    </toc-element>
+    <toc-element toc-title="Misc">
+        <toc-element topic="commands.md"/>
+        <toc-element topic="permissions.md"/>
+        <toc-element topic="placeholders.md"/>
     </toc-element>
 </instance-profile>
