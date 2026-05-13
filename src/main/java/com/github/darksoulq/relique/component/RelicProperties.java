@@ -7,16 +7,15 @@ import com.github.darksoulq.abyssallib.world.item.component.DataComponentType;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RelicProperties extends DataComponent<RelicProperties.Properties> {
-    public record Properties(List<RelicAttributeModifier> attributes) {}
+public class RelicProperties extends DataComponent<List<RelicAttributeModifier>> {
 
-    public static final Codec<Properties> CODEC = RelicAttributeModifier.CODEC.list().orElse(new ArrayList<>()).xmap(Properties::new, Properties::attributes);
+    public static final Codec<List<RelicAttributeModifier>> CODEC = RelicAttributeModifier.CODEC.list().orElse(new ArrayList<>());
 
     public static final DataComponentType<RelicProperties> TYPE = DataComponentType.simple(
         CODEC.xmap(RelicProperties::new, RelicProperties::getValue)
     );
 
-    public RelicProperties(Properties value) {
+    public RelicProperties(List<RelicAttributeModifier> value) {
         super(value);
     }
 

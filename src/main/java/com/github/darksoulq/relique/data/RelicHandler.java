@@ -351,7 +351,7 @@ public class RelicHandler {
         if (i == null) i = new Item(item);
         if (!i.hasData(RelicProperties.TYPE)) return;
 
-        List<RelicAttributeModifier> mods = i.getData(RelicProperties.TYPE).getValue().attributes();
+        List<RelicAttributeModifier> mods = i.getData(RelicProperties.TYPE).getValue();
         EntityAttributes customAttributes = EntityAttributes.of(entityId);
 
         for (RelicAttributeModifier mod : mods) {
@@ -394,7 +394,7 @@ public class RelicHandler {
         if (i == null) i = new Item(item);
         if (!i.hasData(RelicProperties.TYPE)) return;
 
-        List<RelicAttributeModifier> mods = i.getData(RelicProperties.TYPE).getValue().attributes();
+        List<RelicAttributeModifier> mods = i.getData(RelicProperties.TYPE).getValue();
         EntityAttributes customAttributes = EntityAttributes.of(entityId);
 
         for (RelicAttributeModifier mod : mods) {

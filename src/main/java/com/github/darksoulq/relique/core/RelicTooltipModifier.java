@@ -58,11 +58,11 @@ public class RelicTooltipModifier implements ClientItemModifier {
 
         if (hasRelicProps) {
             RelicProperties props = map.getData(RelicProperties.TYPE);
-            if (props != null && !props.getValue().attributes().isEmpty()) {
+            if (props != null && !props.getValue().isEmpty()) {
                 newLore.add(Component.empty());
 
                 Map<String, List<RelicAttributeModifier>> bySlot = new LinkedHashMap<>();
-                for (RelicAttributeModifier mod : props.getValue().attributes()) {
+                for (RelicAttributeModifier mod : props.getValue()) {
                     if (mod.slots().isEmpty()) {
                         bySlot.computeIfAbsent("any", k -> new ArrayList<>()).add(mod);
                     } else {
