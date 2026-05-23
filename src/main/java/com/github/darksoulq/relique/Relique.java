@@ -2,6 +2,8 @@ package com.github.darksoulq.relique;
 
 import com.github.darksoulq.abyssallib.server.command.CommandBus;
 import com.github.darksoulq.abyssallib.server.event.EventBus;
+import com.github.darksoulq.abyssallib.server.scheduler.Clock;
+import com.github.darksoulq.abyssallib.server.scheduler.Scheduler;
 import com.github.darksoulq.abyssallib.server.translation.internal.ItemPacketModifier;
 import com.github.darksoulq.relique.core.*;
 import com.github.darksoulq.relique.data.PluginConfig;
@@ -15,6 +17,8 @@ public final class Relique extends JavaPlugin {
     public static final String PLUGIN_ID = "relique";
     public static Relique INSTANCE;
     public static PluginConfig CONFIG;
+    public static Scheduler SCHEDULER;
+
     private final Metrics metrics = BukkitMetrics.factory()
         .token("af06c9aec3be1e546f1f096c99f4de0d")
         .create(this);
@@ -23,6 +27,7 @@ public final class Relique extends JavaPlugin {
     public void onEnable() {
         INSTANCE = this;
         CONFIG = new PluginConfig();
+        SCHEDULER = new Scheduler(this);
 
         PluginPermissions.NAMESPACE.apply();
         RelicComponents.COMPONENTS.apply();
@@ -38,7 +43,7 @@ public final class Relique extends JavaPlugin {
         RelicLoader.loadResource(this);
         RelicLoader.load();
 
-        Bukkit.getScheduler().runTaskLater(this, Resources::setupAndRegister, 15L);
+        SCHEDULER.schedule(Resources::setupAndRegister).after(15L, Clock.TICKS).once();
 
         if (CONFIG.metrics.get()) metrics.ready();
         new EventBus(this).register(new Events());

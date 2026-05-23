@@ -1,60 +1,68 @@
 plugins {
-    id 'java'
-    id("xyz.jpenilla.run-paper") version "3.0.2"
+    id 'java-library'
+    id 'xyz.jpenilla.run-paper' version '3.0.2'
     id 'io.papermc.paperweight.userdev' version '2.0.0-beta.21'
 }
 
 group = 'com.github.darksoulq'
-version = '2.1.1-mc.26.1.2'
+version = '2.1.2-mc.26.1.2'
+
+def targetJavaVersion = 25
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
+    withJavadocJar()
+    withSourcesJar()
+}
 
 repositories {
     mavenCentral()
+
     maven {
-        name = "papermc-repo"
-        url = "https://repo.papermc.io/repository/maven-public/"
+        name = 'papermc-repo'
+        url = uri('https://repo.papermc.io/repository/maven-public/')
     }
+
     maven {
-        url = uri("https://jitpack.io/")
+        name = 'jitpack'
+        url = uri('https://jitpack.io/')
     }
+
     maven {
-        name = "faststatsReleases"
-        url = uri("https://repo.faststats.dev/releases")
+        name = 'faststatsReleases'
+        url = uri('https://repo.faststats.dev/releases')
     }
 }
 
 dependencies {
     paperweight.paperDevBundle('26.1.2.build.12-alpha')
-    implementation("com.github.darksoulq:AbyssalLib:v2.1.0-mc.26.1.2")
-    compileOnly('com.fasterxml.jackson.core:jackson-databind:2.17.0')
-    compileOnly('com.fasterxml.jackson.core:jackson-core:2.17.0')
-    implementation("dev.faststats.metrics:bukkit:0.22.0")
+
+    implementation 'com.github.darksoulq:AbyssalLib:v2.3.0-mc.26.1.2'
+
+    compileOnly 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
+    compileOnly 'com.fasterxml.jackson.core:jackson-core:2.17.0'
+
+    implementation 'dev.faststats.metrics:bukkit:0.22.0'
 }
 
-tasks {
-    runServer {
-        minecraftVersion("26.1.2")
-    }
-}
-
-def targetJavaVersion = 25
-java {
-    def javaVersion = JavaVersion.toVersion(targetJavaVersion)
-    if (JavaVersion.current() < javaVersion) {
-        toolchain.languageVersion = JavaLanguageVersion.of(targetJavaVersion)
-    }
-    withJavadocJar()
-    withSourcesJar()
-}
+runPaper.folia.registerTask()
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
-
-    if (targetJavaVersion >= 10 || JavaVersion.current().isJava10Compatible()) {
-        options.release.set(targetJavaVersion)
-    }
+    options.release.set(targetJavaVersion)
 }
 
-javadoc {
+tasks.named('runServer') {
+    minecraftVersion('26.1.2')
+    jvmArgs '-Xms2G', '-Xmx2G', '-Dcom.mojang.eula.agree=true'
+}
+
+tasks.named('runFolia') {
+    minecraftVersion('26.1.2')
+    jvmArgs '-Xms2G', '-Xmx2G', '-Dcom.mojang.eula.agree=true'
+}
+
+tasks.named('javadoc') {
     options.encoding = 'UTF-8'
     options.charSet = 'UTF-8'
     options.memberLevel = JavadocMemberLevel.PUBLIC
@@ -63,16 +71,18 @@ javadoc {
     options.links('https://docs.oracle.com/en/java/javase/21/docs/api/')
 }
 
-artifacts {
-    archives(sourcesJar)
-    archives(javadocJar)
+tasks.named('processResources') {
+    def props = [version: version]
+
+    inputs.properties(props)
+    filteringCharset = 'UTF-8'
+
+    filesMatching('paper-plugin.yml') {
+        expand(props)
+    }
 }
 
-processResources {
-    def props = [version: version]
-    inputs.properties props
-    filteringCharset 'UTF-8'
-    filesMatching('paper-plugin.yml') {
-        expand props
-    }
+artifacts {
+    archives sourcesJar
+    archives javadocJar
 }

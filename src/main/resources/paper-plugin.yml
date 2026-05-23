@@ -1,7 +1,9 @@
 name: Relique
-version: '2.1.1-mc.26.1.2'
+version: '2.1.2-mc.26.1.2'
 main: com.github.darksoulq.relique.Relique
-api-version: '1.21'
+api-version: '26.1'
+
+folia-supported: true
 
 dependencies:
   server:
