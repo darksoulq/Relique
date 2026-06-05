@@ -6,6 +6,9 @@
 
 ---
 
+## Requirements:
+The plugin requires [AbyssalLib](https://modrinth.com/plugin/abyssallib)
+
 ## Features
 
 A Curios-like Plugin for PaperMC servers
