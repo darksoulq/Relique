@@ -5,6 +5,7 @@ import com.github.darksoulq.abyssallib.server.event.EventBus;
 import com.github.darksoulq.abyssallib.server.scheduler.Clock;
 import com.github.darksoulq.abyssallib.server.scheduler.Scheduler;
 import com.github.darksoulq.abyssallib.server.translation.internal.ItemPacketModifier;
+import com.github.darksoulq.abyssallib.server.util.UpdateChecker;
 import com.github.darksoulq.relique.core.*;
 import com.github.darksoulq.relique.data.PluginConfig;
 import com.github.darksoulq.relique.data.Resources;
@@ -47,5 +48,10 @@ public final class Relique extends JavaPlugin {
 
         if (CONFIG.metrics.get()) metrics.ready();
         new EventBus(this).register(new Events());
+
+        new UpdateChecker(this, "relique", true, "-alpha").check(result -> {
+            getLogger().warning("A new update is available: " + result.version().toString());
+            getLogger().warning("Download at: " + result.link());
+        });
     }
 }

@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github.darksoulq'
-version = '2.1.2-mc.26.1.2'
+version = '2.1.3-mc.26.1.2-alpha.1'
 
 def targetJavaVersion = 25
 
@@ -35,9 +35,9 @@ repositories {
 }
 
 dependencies {
-    paperweight.paperDevBundle('26.1.2.build.12-alpha')
+    paperweight.paperDevBundle('26.1.2.build.+')
 
-    implementation 'com.github.darksoulq:AbyssalLib:v2.3.0-mc.26.1.2'
+    implementation 'com.github.darksoulq:AbyssalLib:v2.4.0-mc.26.1.2-alpha.1'
 
     compileOnly 'com.fasterxml.jackson.core:jackson-databind:2.17.0'
     compileOnly 'com.fasterxml.jackson.core:jackson-core:2.17.0'

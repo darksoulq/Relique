@@ -96,7 +96,7 @@ public class RelicLoader {
         if (Files.exists(entitiesDir)) {
             try (Stream<Path> stream = Files.walk(entitiesDir)) {
                 stream.filter(Files::isRegularFile).filter(p -> p.toString().endsWith(".json")).forEach(path -> {
-                    EntitySlotConfig config = Try.of(() -> EntitySlotConfig.CODEC.decode(JsonOps.INSTANCE, MAPPER.readTree(path.toFile()))).orElse(null);
+                    EntitySlotConfig config = Try.of(() -> EntitySlotConfig.CODEC.decode(JsonOps.INSTANCE, MAPPER.readTree(path.toFile())).orElse(null)).orElse(null);
                     mergeEntityConfig(config);
                 });
             } catch (IOException ignored) {}
@@ -137,7 +137,7 @@ public class RelicLoader {
                                     JsonNode node = MAPPER.readTree(in);
                                     applySlotDef(id, namespace, node);
                                 } else if (folder.equals("entities") && name.endsWith(".json")) {
-                                    EntitySlotConfig config = EntitySlotConfig.CODEC.decode(JsonOps.INSTANCE, MAPPER.readTree(in));
+                                    EntitySlotConfig config = EntitySlotConfig.CODEC.decode(JsonOps.INSTANCE, MAPPER.readTree(in)).orElse(null);
                                     mergeEntityConfig(config);
                                 } else if (folder.equals("icons") && name.endsWith(".png")) {
                                     LOADED_ICONS.put(namespace + ":" + id, in.readAllBytes());
