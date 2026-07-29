@@ -1,0 +1,12 @@
+1.21.11:
+  java: 21
+  paperweight: '{version}-R0.1-SNAPSHOT'
+  apiVersion: '{version}'
+26.1.2:
+  java: 25
+  paperweight: '{version}.build.+'
+  apiVersion: '{version}'
+26.2:
+  java: 25
+  paperweight: '{version}.build.+'
+  apiVersion: '{version}'

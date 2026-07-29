@@ -24,6 +24,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.EntityBlockFormEvent;
@@ -109,8 +110,9 @@ public class Events {
         }
     }
 
-    @SubscribeEvent
+    @SubscribeEvent(ignoreCancelled = false)
     public void onInteract(PlayerInteractEvent event) {
+        if (event.useItemInHand() == Event.Result.ALLOW) return;
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
         if (event.getHand() != EquipmentSlot.HAND) return;
 
@@ -140,7 +142,7 @@ public class Events {
                         ItemStack toEquip = item.clone();
                         toEquip.setAmount(1);
                         if (handler.equip(slotId, i, toEquip)) {
-                            item.setAmount(item.getAmount() - 1);
+                            item.subtract();
                             event.setCancelled(true);
                             return;
                         }

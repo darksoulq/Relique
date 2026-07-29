@@ -3,3 +3,6 @@
 /build/
 /build/classes/java/main/
 /run/
+/versions/
+/gradle.properties
+/sonatype.asc

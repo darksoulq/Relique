@@ -1,0 +1,12 @@
+abyssalLib:
+  type: implementation
+  module: "io.github.darksoulq:AbyssalLib:2.4.0-mc.{version}-alpha.2"
+jacksonDatabind:
+  type: compileOnly
+  module: "com.fasterxml.jackson.core:jackson-databind:2.17.0"
+jacksonCore:
+  type: compileOnly
+  module: "com.fasterxml.jackson.core:jackson-core:2.17.0"
+faststatsMetrics:
+  type: implementation
+  module: "dev.faststats.metrics:bukkit:0.22.0"
