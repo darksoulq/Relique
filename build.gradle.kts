@@ -19,7 +19,8 @@ plugins {
 
 group = "com.github.darksoulq"
 val mcVersion = stonecutter.current.project
-version = "2.1.3-mc.${mcVersion}-alpha.1"
+version = "2.1.3-mc.${mcVersion}"
+stonecutter.current.component1()
 
 val yamlParser = Yaml()
 
@@ -119,7 +120,7 @@ runPaper { folia.registerTask() }
 tasks {
     withType<Jar>().configureEach {
         archiveVersion.set(project.version.toString())
-        archiveBaseName.set(project.name)
+        archiveBaseName.set(rootProject.name)
         activeExcludes.forEach { exclude(it) }
     }
 
@@ -169,12 +170,12 @@ tasks {
 }
 
 centralPortal {
-    name = project.name
+    name = rootProject.name
     publishingType = PublishingType.AUTOMATIC
     pom {
-        name = project.name
+        name = rootProject.name
         description = "Library for Minecraft/Folia plugins"
-        url = "https://github.com/darksoulq/${project.name}"
+        url = "https://github.com/darksoulq/${rootProject.name}"
         licenses {
             license {
                 name = "MIT License"
@@ -188,9 +189,9 @@ centralPortal {
             }
         }
         scm {
-            connection = "scm:git:git://github.com/darksoulq/${project.name}.git"
-            developerConnection = "scm:git:ssh://github.com/darksoulq/${project.name}.git"
-            url = "https://github.com/darksoulq/${project.name}"
+            connection = "scm:git:git://github.com/darksoulq/${rootProject.name}.git"
+            developerConnection = "scm:git:ssh://github.com/darksoulq/${rootProject.name}.git"
+            url = "https://github.com/darksoulq/${rootProject.name}"
         }
     }
 }
@@ -199,12 +200,12 @@ publishing {
     publications {
         create<MavenPublication>("snapshot") {
             from(components["java"])
-            artifactId = project.name
+            artifactId = rootProject.name
 
             pom {
-                name.set(project.name)
+                name.set(rootProject.name)
                 description.set("Library for Minecraft/Folia plugins")
-                url.set("https://github.com/darksoulq/${project.name}")
+                url.set("https://github.com/darksoulq/${rootProject.name}")
                 licenses {
                     license {
                         name.set("MIT License")
@@ -218,9 +219,9 @@ publishing {
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/darksoulq/${project.name}.git")
-                    developerConnection.set("scm:git:ssh://github.com/darksoulq/${project.name}.git")
-                    url.set("https://github.com/darksoulq/${project.name}")
+                    connection.set("scm:git:git://github.com/darksoulq/${rootProject.name}.git")
+                    developerConnection.set("scm:git:ssh://github.com/darksoulq/${rootProject.name}.git")
+                    url.set("https://github.com/darksoulq/${rootProject.name}")
                 }
             }
         }
