@@ -17,7 +17,7 @@ plugins {
     id("xyz.jpenilla.run-paper") version "3.0.2"
 }
 
-group = "com.github.darksoulq"
+group = "io.github.darksoulq"
 val mcVersion = stonecutter.current.project
 version = "2.1.3-mc.${mcVersion}"
 stonecutter.current.component1()
