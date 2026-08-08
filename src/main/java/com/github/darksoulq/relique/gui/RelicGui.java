@@ -69,7 +69,7 @@ public class RelicGui {
                 layer.next(ctx.view());
             }))
             .onOpen(layer::renderTo)
-            .onClose(_ -> data.save());
+            .onClose(view -> data.save());
 
         PlayerInventoryElement bottomElement = new PlayerInventoryElement(data);
         for (int i = 0; i < 36; i++) {
